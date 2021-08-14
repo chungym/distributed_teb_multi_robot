@@ -1,0 +1,4 @@
+[submodule "teb_local_planner"]
+	path = teb_local_planner
+	url = git@github.com:chungym/teb_local_planner.git
+	branch = noetic-devel
