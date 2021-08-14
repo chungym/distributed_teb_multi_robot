@@ -9,6 +9,12 @@ Launch:
 3. The robot_scan_matcher remove the robot footprint from LaserScan, and output a PointCloud2. (optional if there is no sensor)
 4. The msg_merger receives other robots' trajectories.
 
+Example
+```xml
+<?xml version="1.0"?>
+
+<launch>
+	
   <group ns="$(arg robot_name)">
      <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
       
@@ -31,3 +37,6 @@ Launch:
     </include>
  
   </group>
+
+</launch>
+```
