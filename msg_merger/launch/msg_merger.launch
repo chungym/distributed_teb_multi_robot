@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="id_robot" default="robot"/>
+  <arg name="prefix" default="$(arg id_robot)_"/>
+
+
+  <!-- Run move_base -->
+  <node pkg="msg_merger" type="msg_merger_node" respawn="false" name="msg_merger" output="screen">
+  </node>
+
+</launch>

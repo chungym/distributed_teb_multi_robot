@@ -1,0 +1,5 @@
+<library path="lib/librobot_scan_matcher">
+  <class type="robot_scan_matcher_plugins::NavieMatcher" base_class_type="robot_scan_matcher_base::BaseMatcher">
+    <description>Simple robot-scan matching process to correct costmap</description>
+  </class>
+</library>

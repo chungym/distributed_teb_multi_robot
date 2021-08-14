@@ -1,0 +1,8 @@
+<library path="lib/libdynamicvoronoi">
+  <class type="dynamicvoronoi::GridPlugin" base_class_type="dynamicvoronoi::BaseVoronoi">
+    <description>Extract GVD from occupancy grid published by the local costmap</description>
+  </class>
+  <class type="dynamicvoronoi::BoostPlugin" base_class_type="dynamicvoronoi::BaseVoronoi">
+    <description>Extract GVD from Costmap2D object</description>
+  </class>
+</library>

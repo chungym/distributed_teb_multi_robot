@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+
+	<node pkg="dynamicvoronoi" type="dynamicvoronoi_node" name="dynamicvoronoi"  output="screen" />
+
+</launch>

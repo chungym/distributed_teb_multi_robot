@@ -1,0 +1,5 @@
+<library path="lib/libmsg_merger">
+  <class type="msg_merger_plugin::MergerPlugin" base_class_type="msg_merger_base::BaseMerger">
+    <description>Simple process to copy robot trajectories as obstacle trajectories</description>
+  </class>
+</library>

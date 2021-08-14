@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+  <name>robot_scan_matcher</name>
+  <version>0.2.0</version>
+  <description>The robot_scan_matcher package</description>
+  <maintainer email="test@test.com">test</maintainer>
+  <license>BSD</license>
+
+  <url type="website"></url>
+  <url type="bugtracker"></url>
+  <url type="repository"></url>
+
+  <author>Yiu Ming Chung</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>pluginlib</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>pcl_ros</build_depend>
+  <build_depend>teb_local_planner</build_depend>
+
+  <run_depend>pluginlib</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>pcl_ros</run_depend>
+  <run_depend>teb_local_planner</run_depend>
+
+  <export>
+    <robot_scan_matcher plugin="${prefix}/robot_scan_matcher_plugins.xml" />
+  </export>
+</package>

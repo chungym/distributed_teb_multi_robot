@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="id_robot" default="robot"/>
+  <arg name="prefix" default="$(arg id_robot)_"/>
+
+  <!-- Topics argumments -->
+  <arg name="scan_topic" default="front_laser/scan"/>
+  <arg name="obstacle_topic" default="move_base/TebLocalPlannerROS/dynamic_obstacles"/>
+  
+  <!-- frame parameters -->
+  <arg name="global_frame" default="odom"/>
+  
+  <arg name="removal_distance" default="1.0"/>
+  <arg name="rate" default="10"/>
+
+  <!-- Run move_base -->
+  <node pkg="robot_scan_matcher" type="standalone_matcher" respawn="false" name="robot_scan_matcher" output="screen">
+  <param name="scan_topic" value="$(arg scan_topic)"/>
+  <param name="obstacle_topic" value="$(arg obstacle_topic)"/>
+  <param name="global_frame" value="$(arg global_frame)"/>
+  <param name="removal_distance" value="$(arg removal_distance)"/>
+  <param name="rate" value="$(arg rate)"/>
+  </node>
+
+</launch>
