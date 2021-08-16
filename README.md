@@ -1,6 +1,11 @@
 # distributed_teb_multi_robot
  A distributed TEB planner for multi-robot trajectory planning
 
+Video on YouTube:
+
+[![Video](https://img.youtube.com/vi/LnB0i0jpYLM/0.jpg)](https://www.youtube.com/watch?v=LnB0i0jpYLM "Video")
+
+
 
 Launch:
 
