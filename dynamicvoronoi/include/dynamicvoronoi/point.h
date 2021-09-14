@@ -1,3 +1,7 @@
+// for comparison only
+// source: http://www2.informatik.uni-freiburg.de/~lau/dynamicvoronoi/
+// BSD licence
+
 #ifndef _VOROPOINT_H_
 #define _VOROPOINT_H_
 

@@ -1,3 +1,7 @@
+// for comparison only
+// source: http://www2.informatik.uni-freiburg.de/~lau/dynamicvoronoi/
+// BSD licence
+
 #ifndef _PRIORITYQUEUE2_H_
 #define _PRIORITYQUEUE2_H_
 
