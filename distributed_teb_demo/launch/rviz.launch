@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="cfg" default="warehouse008"/>
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find distributed_teb_demo)/cfg/rviz/$(arg cfg).rviz" output="screen"/>
+  <!--<node pkg="rviz" type="rviz" name="rviz" output="screen"/> -->
+</launch>

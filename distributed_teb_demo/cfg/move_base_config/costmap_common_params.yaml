@@ -1,0 +1,25 @@
+publish_frequency: 5.0
+
+robot_radius: 0.26
+
+static_layer:
+  map_topic: /map
+  track_unknown_space: False
+  first_map_only: True
+
+inflation_layer:
+  inflation_radius: 0.3
+
+obstacle_layer:
+  obstacle_range: 4.9
+  raytrace_range: 20.5
+  observation_sources: front_laser
+  front_laser:
+    sensor_frame: base_laser_link
+    data_type: PointCloud2
+    topic: PointCloud_filtered
+    marking: true
+    clearing: true
+    inf_is_valid: true
+    observation_persistence: 0.0
+

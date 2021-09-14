@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<launch>
+<arg name="nr_of_robots" default="1"/> 
+<arg name="robot_name_prefix" default="robot_"/>
+<arg name="use_default" default="true" />
+<arg name="global_frame" default="map"/>
+
+<!-- reduce the loop counter "nr_of_robots-1" = robot_id -->
+<arg name="robot_id" value="$(eval arg('nr_of_robots') - 1)"/>
+
+<!-- launch the controller -->
+
+  <arg name="robot_name" value="$(arg robot_name_prefix)$(arg robot_id)" />
+  <arg name="base_frame" default="$(arg robot_name)/base_footprint"/>
+  <arg name="odom_topic" default="/$(arg robot_name)/odom"/>
+
+  <group ns="$(arg robot_name)">
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+      <param name="controller_frequency" value="10.0" />
+      <rosparam file="$(find distributed_teb_demo)/cfg/move_base_config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+      <rosparam file="$(find distributed_teb_demo)/cfg/move_base_config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+      
+      <rosparam file="$(find distributed_teb_demo)/cfg/move_base_config/local_costmap_params.yaml" command="load" />
+      <param name="local_costmap/global_frame" value="$(arg robot_name)/odom"/>
+      <param name="local_costmap/robot_base_frame" value="$(arg base_frame)"/>
+      <param name="local_costmap/obstacle_layer/front_laser/sensor_frame" value="$(arg robot_name)/base_laser_link"/>
+      
+      <rosparam file="$(find distributed_teb_demo)/cfg/move_base_config/global_costmap_params.yaml" command="load" />
+      <param name="global_costmap/global_frame" value="$(arg global_frame)"/>
+      <param name="global_costmap/robot_base_frame" value="$(arg base_frame)"/>
+      
+      <rosparam file="$(find distributed_teb_demo)/cfg/move_base_config/teb_local_planner_params.yaml" command="load" />
+      <param name="TebLocalPlannerROS/map_frame" value="$(arg global_frame)"/>
+      <param name="TebLocalPlannerROS/odom_topic" value="$(arg odom_topic)"/>
+    </node>
+
+	<!-- robot_scan_matcher -->
+	<!--include file="$(find robot_scan_matcher)/launch/robot_scan_matcher.launch">
+		<arg name="scan_topic" value="base_scan"/>
+		<arg name="global_frame" value="$(arg robot_name)/odom"/>
+	</include-->
+
+	<!-- message merger -->
+	<include file="$(find msg_merger)/launch/msg_merger.launch">
+	</include>
+
+
+    <!--node pkg="fake_localization" type="fake_localization" name="fake_localization" respawn="false" output="screen">
+      <param name="odom_frame_id" value="$(arg robot_name)/odom" />
+      <param name="base_frame_id" value="$(arg base_frame)" />
+      <param name="global_frame_id" value="$(arg global_frame)" />
+    </node-->
+    
+    <node pkg="tf" type="static_transform_publisher" name="fake_localizer" args="0 0 0 0 0 0 1 $(arg global_frame) $(arg robot_name)/odom 100" />
+    
+    <!--node pkg="dynamicvoronoi" type="dynamicvoronoi_node" name="dynamicvoronoi" output="screen" /-->
+    
+    
+  </group>
+
+<!-- recursive call -->
+<include file="$(find distributed_teb_demo)/launch/move_base_recursive.launch" if="$(eval arg('robot_id') > 0)">
+    <arg name="nr_of_robots" value="$(arg robot_id)" />
+    <arg name="robot_name_prefix" value="$(arg robot_name_prefix)" />
+</include>
+  
+</launch>

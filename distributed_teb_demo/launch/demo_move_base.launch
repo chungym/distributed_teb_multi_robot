@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<arg name="room"                                default="warehouse008"      />
+<arg name="launch_rviz"                         default="true"      />
+<arg name="launch_stage"                        default="true"      />
+<arg name="launch_map_server"                   default="true"      />
+<arg name="launch_local_controller"             default="true"      />
+<arg name="nr_of_robots"                        default="3"         /> 
+
+<arg name="cfg"                                 default="default"   />
+
+<param name="/use_sim_time" value="true"/>
+
+<!-- map server -->
+<group if="$(arg launch_map_server)">
+  <include file="$(find distributed_teb_demo)/launch/map_server.launch">
+    <arg name="room" value="$(arg room)" />
+  </include>
+</group>
+
+<group if="$(arg launch_stage)">
+  <include file="$(find distributed_teb_demo)/launch/stage.launch">
+    <arg name="room" value="$(arg room)" />
+  </include>
+</group>
+
+<group if="$(arg launch_local_controller)">
+
+    <include file="$(find distributed_teb_demo)/launch/move_base_recursive.launch">
+      <arg name="nr_of_robots" default="$(arg nr_of_robots)"/> 
+      <arg name="robot_name_prefix" default="robot_"/>
+    </include>
+
+</group>
+  
+<!-- start rviz -->
+<group if="$(arg launch_rviz)">
+  <include file="$(find distributed_teb_demo)/launch/rviz.launch">
+  <arg name="cfg" value="$(arg room)"/> 
+  </include>
+</group>
+
+</launch>

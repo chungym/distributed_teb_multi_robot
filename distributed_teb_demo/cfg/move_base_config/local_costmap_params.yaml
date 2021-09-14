@@ -1,0 +1,25 @@
+local_costmap:
+  global_frame: robot_odom
+  robot_base_frame: robot_base_footprint
+  update_frequency: 10.0
+  always_send_full_costmap: true
+  static_map: false
+  rolling_window: true
+  width: 15.0
+  height: 15.0
+  resolution: 0.05
+  # padding is 0.1 by default, making difficult to pass through narrow places
+  footprint_padding: 0.0
+
+  inflation_layer:
+    inflation_radius: 0.15
+
+  plugins:
+    -
+      name: static_layer
+      type: "costmap_2d::StaticLayer"
+  
+    -
+      name: inflation_layer
+      type: "costmap_2d::InflationLayer"
+      
