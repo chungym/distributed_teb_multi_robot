@@ -6,11 +6,23 @@ Video on YouTube:
 [![Video](https://img.youtube.com/vi/LnB0i0jpYLM/0.jpg)](https://www.youtube.com/watch?v=LnB0i0jpYLM "Video")
 
 
+### Demo
+
+A demo is included for testing and reproducing the results in the vidoe. Parts of the maps and scripts are modified from *tuw_multi_robot* package
+
+```
+roslaunch distributed_teb_demo demo_move_base.launch room:=warehouse008  nr_of_robots:=8
+rosrun distributed_teb_demo distribute_goals_8.py
+```
+
+### Use in your own projects
+
+The distributed planners is expected to be run with navigation stack.
 
 Launch:
 
 1. For multi-robot systems, each robot should has its own namespace. 
-2. In the move_base node, load the setting for teb_local_planner. A reference file is uploaded. It may need some tuning.
+2. In the move_base node, load the setting for teb_local_planner.
 3. The robot_scan_matcher remove the robot footprint from LaserScan, and output a PointCloud2. (optional if there is no sensor)
 4. The msg_merger receives other robots' trajectories.
 
@@ -21,7 +33,7 @@ Example
 <launch>
 	
   <group ns="$(arg robot_name)">
-     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
       
       <!-- other settings such as costmap settings -->
       
@@ -31,14 +43,14 @@ Example
       
     </node>
  
-  	 <!-- robot_scan_matcher -->
+    <!-- robot_scan_matcher -->
     <include file="$(find robot_scan_matcher)/launch/robot_scan_matcher.launch">
   		  <arg name="scan_topic" value="base_scan"/>
   		  <arg name="global_frame" value="$(arg robot_name)/odom"/>
-  	 </include>
+    </include>
 
-	   <!-- message merger -->
-	   <include file="$(find msg_merger)/launch/msg_merger.launch">
+    <!-- message merger -->
+    <include file="$(find msg_merger)/launch/msg_merger.launch">
     </include>
  
   </group>
