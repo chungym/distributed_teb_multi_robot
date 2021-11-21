@@ -13,6 +13,7 @@ TebLocalPlannerROS:
   max_global_plan_lookahead_dist: 5.0
   feasibility_check_no_poses: 1
   publish_feedback: True
+  exact_arc_length: true
 
   # Robot
 
@@ -74,9 +75,9 @@ TebLocalPlannerROS:
   optimization_verbose: False
   penalty_epsilon: 0.05
   weight_max_vel_x: 10
-  weight_max_vel_theta: 1
+  weight_max_vel_theta: 5
   weight_acc_lim_x: 10
-  weight_acc_lim_theta: 1
+  weight_acc_lim_theta: 5
   weight_kinematics_nh: 1000
   weight_kinematics_forward_drive: 5
   weight_kinematics_turning_radius: 1
