@@ -5,6 +5,10 @@ Video on YouTube:
 
 [![Video](https://img.youtube.com/vi/LnB0i0jpYLM/0.jpg)](https://www.youtube.com/watch?v=LnB0i0jpYLM "Video")
 
+### Citation
+Y. M. Chung, H. Youssef and M. Roidl, "Distributed Timed Elastic Band (DTEB) Planner: Trajectory Sharing and Collision Prediction for Multi-Robot Systems," 2022 International Conference on Robotics and Automation (ICRA), 2022, pp. 10702-10708, doi: 10.1109/ICRA46639.2022.9811762.
+
+https://ieeexplore.ieee.org/document/9811762
 
 ### Demo
 
